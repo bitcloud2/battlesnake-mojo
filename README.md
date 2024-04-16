@@ -1,37 +1,36 @@
-# Battlesnake Python Starter Project
+# Battlesnake Mojo Starter Project
 
-An official Battlesnake template written in Python. Get started at [play.battlesnake.com](https://play.battlesnake.com).
+A Battlesnake written in Mojo. Get started at [play.battlesnake.com](https://play.battlesnake.com).
 
-![Battlesnake Logo](https://media.battlesnake.com/social/StarterSnakeGitHubRepos_Python.png)
-
-This project is a great starting point for anyone wanting to program their first Battlesnake in Python. It can be run locally or easily deployed to a cloud provider of your choosing. See the [Battlesnake API Docs](https://docs.battlesnake.com/api) for more detail. 
-
-[![Run on Replit](https://repl.it/badge/github/BattlesnakeOfficial/starter-snake-python)](https://replit.com/@Battlesnake/starter-snake-python)
+This project is a great starting point for anyone wanting to program their first Battlesnake in Mojo. It can be run locally or easily deployed to a cloud provider of your choosing. See the [Battlesnake API Docs](https://docs.battlesnake.com/api) for more detail. 
 
 ## Technologies Used
 
-This project uses [Python 3](https://www.python.org/) and [Flask](https://flask.palletsprojects.com/). It also comes with an optional [Dockerfile](https://docs.docker.com/engine/reference/builder/) to help with deployment.
+This project uses [Python 3](https://www.python.org/), [Mojo](https://www.modular.com/max/mojo), and [Lightbug](https://github.com/saviorand/lightbug_http). It also comes with an optional [Dockerfile](https://docs.docker.com/engine/reference/builder/) to help with deployment.
 
 ## Run Your Battlesnake
 
-Install dependencies using pip
+Note: This is a hack until I can figure out a packaging issue.
+Clone lightbug repo into separate directory.
+Copy necessary directories into yours.
 
 ```sh
-pip install -r requirements.txt
+git clone https://github.com/saviorand/lightbug_http.git ../lightbug_http
+cp -rf ../lightbug_http/lightbug_http .
+cp -rf ../lightbug_http/external .
 ```
 
 Start your Battlesnake
 
 ```sh
-python main.py
+mojo main.mojo
 ```
 
 You should see the following output once it is running
 
 ```sh
-Running your Battlesnake at http://0.0.0.0:8000
- * Serving Flask app 'My Battlesnake'
- * Debug mode: off
+🔥🐝 Lightbug is listening on http://0.0.0.0:8000
+Ready to accept connections...
 ```
 
 Open [localhost:8000](http://localhost:8000) in your browser and you should see
@@ -40,7 +39,7 @@ Open [localhost:8000](http://localhost:8000) in your browser and you should see
 {"apiversion":"1","author":"","color":"#888888","head":"default","tail":"default"}
 ```
 
-## Play a Game Locally
+## Play a Game Locally (untested/probably won't work)
 
 Install the [Battlesnake CLI](https://github.com/BattlesnakeOfficial/rules/tree/main/cli)
 * You can [download compiled binaries here](https://github.com/BattlesnakeOfficial/rules/releases)

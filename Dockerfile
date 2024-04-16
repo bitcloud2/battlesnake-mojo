@@ -36,6 +36,9 @@ ENV PATH="$PATH:$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
 # COPY ./lightbug_tmp/lightbug_http .
 # COPY ./lightbug_tmp/external .
 
+# Pull package directly (better way than above)
+# RUN wget https://github.com/saviorand/lightbug_http/releases/download/latest-build/lightbug_http.mojopkg
+
 # Install app
 COPY . /usr/app
 WORKDIR /usr/app
