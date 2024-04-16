@@ -1,3 +1,5 @@
+# fly.toml app configuration file generated for mojo-snake on 2024-04-16T00:40:00-07:00
+#
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
@@ -15,6 +17,6 @@ primary_region = 'sea'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
+  memory = '2gb'
   cpu_kind = 'shared'
   cpus = 1

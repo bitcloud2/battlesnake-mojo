@@ -4,9 +4,10 @@ RUN apt-get update \
     && apt-get install -y \
     wget \
     curl \
-    libedit2
+    libedit2 \
+    git
 
-# # Download/Install minicoda py3.11 for linux x86/x64.
+# Download/Install minicoda py3.11 for linux x86/x64.
 RUN mkdir -p /opt/conda 
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py311_24.1.2-0-Linux-x86_64.sh -O /opt/conda/miniconda.sh \ 
     && bash /opt/conda/miniconda.sh -b -p /opt/miniconda
@@ -29,12 +30,15 @@ ARG MODULAR_HOME="/root/.modular"
 ENV MODULAR_HOME=$MODULAR_HOME
 ENV PATH="$PATH:$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
 
+# Compile lightbug repo
+# RUN git clone --depth 1 --branch latest-build https://github.com/saviorand/lightbug_http.git ./lightbug_tmp
+# && mojo package lightbug_http/lightbug_http -o lightbug_http.mojopkg \
+# COPY ./lightbug_tmp/lightbug_http .
+# COPY ./lightbug_tmp/external .
+
 # Install app
 COPY . /usr/app
 WORKDIR /usr/app
 
-# Install dependencies
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
 # Run Battlesnake
-CMD [ "python", "main.py" ]
+CMD [ "mojo", "main.mojo" ]

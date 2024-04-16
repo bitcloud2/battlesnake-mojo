@@ -1,3 +1,6 @@
 *.DS_Store
 *.pyc
 __pycache__/
+lightbug_http/
+lightbug_http.mojopkg
+external/
