@@ -11,6 +11,7 @@ This project uses [Python 3](https://www.python.org/), [Mojo](https://www.modula
 ## Run Your Battlesnake
 
 Note: This is a hack until I can figure out a packaging issue.
+
 Clone lightbug repo into separate directory.
 Copy necessary directories into yours.
 
