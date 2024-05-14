@@ -10,15 +10,12 @@ This project uses [Python 3](https://www.python.org/), [Mojo](https://www.modula
 
 ## Run Your Battlesnake
 
-Note: This is a hack until I can figure out a packaging issue.
+Note: Tested with Mojo 24.3.0 and lightbug_http `latest-build` (version after v0.1.2-alpha)
 
-Clone lightbug repo into separate directory.
-Copy necessary directories into yours.
+Download lightbug_http package into repo.
 
 ```sh
-git clone https://github.com/saviorand/lightbug_http.git ../lightbug_http
-cp -rf ../lightbug_http/lightbug_http .
-cp -rf ../lightbug_http/external .
+wget https://github.com/saviorand/lightbug_http/releases/download/latest-build/lightbug_http.mojopkg
 ```
 
 Start your Battlesnake
