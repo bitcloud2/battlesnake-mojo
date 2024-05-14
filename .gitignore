@@ -4,3 +4,4 @@ __pycache__/
 lightbug_http/
 lightbug_http.mojopkg
 external/
+fly.toml

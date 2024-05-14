@@ -31,18 +31,11 @@ ARG MODULAR_HOME="/root/.modular"
 ENV MODULAR_HOME=$MODULAR_HOME
 ENV PATH="$PATH:$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
 
-# Compile lightbug repo
-# RUN git clone --depth 1 --branch latest-build https://github.com/saviorand/lightbug_http.git ./lightbug_tmp
-# && mojo package lightbug_http/lightbug_http -o lightbug_http.mojopkg \
-# COPY ./lightbug_tmp/lightbug_http .
-# COPY ./lightbug_tmp/external .
-
-# Pull package directly (better way than above)
-# RUN wget https://github.com/saviorand/lightbug_http/releases/download/latest-build/lightbug_http.mojopkg
-
 # Install app
 COPY . /usr/app
 WORKDIR /usr/app
+# Pull lightbug_http package directly
+RUN wget https://github.com/saviorand/lightbug_http/releases/download/latest-build/lightbug_http.mojopkg
 
 # Run Battlesnake
 CMD [ "mojo", "main.mojo" ]
