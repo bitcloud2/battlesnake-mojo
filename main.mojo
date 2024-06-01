@@ -97,22 +97,24 @@ fn end(game_state: String) -> String:
 def move(game_state_raw: String) -> String:
     is_move_safe = IsMoveSafe(True, True, True, True)
 
-    # TODO: Convert string to Dict to use below
+    var json = Python.import_module("json")
+    game_state = json.loads(game_state_raw)
+
     # We've included code to prevent your Battlesnake from moving backwards
-    # my_head = game_state["you"]["body"][0]  # Coordinates of your head
-    # my_neck = game_state["you"]["body"][1]  # Coordinates of your "neck"
+    my_head = game_state["you"]["body"][0]  # Coordinates of your head
+    my_neck = game_state["you"]["body"][1]  # Coordinates of your "neck"
 
-    # if my_neck["x"] < my_head["x"]:  # Neck is left of head, don't move left
-    #     is_move_safe.left = False
+    if my_neck["x"] < my_head["x"]:  # Neck is left of head, don't move left
+        is_move_safe.left = False
 
-    # elif my_neck["x"] > my_head["x"]:  # Neck is right of head, don't move right
-    #     is_move_safe.right = False
+    elif my_neck["x"] > my_head["x"]:  # Neck is right of head, don't move right
+        is_move_safe.right = False
 
-    # elif my_neck["y"] < my_head["y"]:  # Neck is below head, don't move down
-    #     is_move_safe.down = False
+    elif my_neck["y"] < my_head["y"]:  # Neck is below head, don't move down
+        is_move_safe.down = False
 
-    # elif my_neck["y"] > my_head["y"]:  # Neck is above head, don't move up
-    #     is_move_safe.up = False
+    elif my_neck["y"] > my_head["y"]:  # Neck is above head, don't move up
+        is_move_safe.up = False
 
     # TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
     # board_width = game_state['board']['width']
@@ -155,7 +157,14 @@ def move(game_state_raw: String) -> String:
 @value
 struct SnakeRouter(HTTPService):
     fn func(self, req: HTTPRequest) raises -> HTTPResponse:
-        var body = String(req.body_raw)
+        var body_raw = String(req.body_raw)
+        var delimiter = "\r\n\r\n"
+        var comb = body_raw.split(delimiter)
+        var header = comb[0] + "\n"
+        var body = comb[0]
+        if len(comb) == 2:
+            body = comb[1] + "}"
+
         var uri = req.uri()
 
         if uri.path() == "/":
@@ -167,7 +176,9 @@ struct SnakeRouter(HTTPService):
         elif uri.path() == "/end":
             return OK(end(body).as_bytes(), "text/plain")
 
-        return OK(String("Choose a different endpoint!").as_bytes(), "text/plain")
+        return OK(
+            String("Choose a different endpoint!").as_bytes(), "text/plain"
+        )
 
 
 # Start server when `mojo main.mojo` is run
