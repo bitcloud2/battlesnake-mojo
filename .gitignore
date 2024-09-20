@@ -5,3 +5,8 @@ lightbug_http/
 lightbug_http.mojopkg
 external/
 fly.toml
+# pixi environments
+.pixi
+*.egg-info
+# magic environments
+.magic

@@ -11,6 +11,7 @@
 # For more info see docs.battlesnake.com
 
 from python import Python
+from collections import List
 from collections.dict import Dict
 from random import random_ui64
 
@@ -33,8 +34,8 @@ struct IsMoveSafe:
         self.left = left
         self.right = right
 
-    fn get_safe_moves(inout self) raises -> object:
-        var safe_moves = object([])
+    fn get_safe_moves(inout self) raises -> List[String]:
+        var safe_moves = List[String]()
         if self.up:
             safe_moves.append("up")
         if self.down:
@@ -127,18 +128,18 @@ def move(game_state_raw: String) -> String:
     # opponents = game_state['board']['snakes']
 
     # Are there any safe moves left?
-    safe_moves = is_move_safe.get_safe_moves()
+    var safe_moves: List[String] = is_move_safe.get_safe_moves()
 
     if len(safe_moves) == 0:
         print("MOVE {game_state['turn']}: No safe moves detected! Moving down")
         var result = Dict[String, String]()
-        var cur_move = String("down")
+        var cur_move = str("down")
         result["move"] = cur_move
         return dict_to_str(result)
 
     # Choose a random move from the safe ones
-    var rand_idx = random_ui64(0, len(safe_moves) - 1)
-    next_move = String(safe_moves[rand_idx])
+    var rand_idx = int(random_ui64(0, len(safe_moves) - 1))
+    next_move = str(safe_moves[rand_idx])
 
     # TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     # food = game_state['board']['food']
@@ -157,11 +158,14 @@ def move(game_state_raw: String) -> String:
 @value
 struct SnakeRouter(HTTPService):
     fn func(self, req: HTTPRequest) raises -> HTTPResponse:
-        var body_raw = String(req.body_raw)
+        var raw_raw: String = req.body_raw
+        var body_raw = str(raw_raw)
         var delimiter = "\r\n\r\n"
         var comb = body_raw.split(delimiter)
         var header = comb[0] + "\n"
-        var body = comb[0]
+        # Add closing paren as it is dropped for some reason.
+        # TODO: Collapse paren add into every call if works. 
+        var body = comb[0] + "}"
         if len(comb) == 2:
             body = comb[1] + "}"
 
@@ -177,7 +181,7 @@ struct SnakeRouter(HTTPService):
             return OK(end(body).as_bytes(), "text/plain")
 
         return OK(
-            String("Choose a different endpoint!").as_bytes(), "text/plain"
+            str("Choose a different endpoint!").as_bytes(), "text/plain"
         )
 
 
