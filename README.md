@@ -10,19 +10,19 @@ This project uses [Python 3](https://www.python.org/), [Mojo](https://www.modula
 
 ## Run Your Battlesnake
 
-Note: Tested with Mojo 24.3.0 and lightbug_http `latest-build` (version after v0.1.2-alpha)
+#### Note: Tested with Mojo 24.5.0 and lightbug_http v0.1.3. Dockerfile has not yet been update to utilize Mojo 24.5 and Magic.
 
-Download lightbug_http package into repo.
+1. Install Mojo. Learn how on the [Modular website](https://www.modular.com/max/mojo).
 
-```sh
-wget https://github.com/saviorand/lightbug_http/releases/download/latest-build/lightbug_http.mojopkg
-```
+1. Clone this repo.
 
-Start your Battlesnake
+1. Run `magic install` in the battlesnake-mojo directory. 
 
-```sh
-mojo main.mojo
-```
+1. Start your Battlesnake
+
+    ```sh
+    mojo main.mojo
+    ```
 
 You should see the following output once it is running
 
