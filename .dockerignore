@@ -3,3 +3,8 @@
 **/*.pyc
 **/__pycache__
 fly.toml
+# Pixi environments
+**/*.pixi
+**/**.egg-info
+# magic environments
+**/*.magic
